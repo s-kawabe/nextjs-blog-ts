@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import Layout from 'component/Layout';
 
 const FirstPost = (): JSX.Element => {
   return (
