@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css, Global } from '@emotion/react'
+import { AppProps } from 'next/app'
 
 const global = css`
 html,
@@ -31,7 +32,7 @@ img {
 }
 `
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Global styles={global} />

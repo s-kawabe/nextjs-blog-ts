@@ -152,7 +152,6 @@ export async function getStaticProps({ params }) {
 `getStaticProps`に含まれるparamsには`getStaticPaths`で取得した<br>
 idが含まれているということになる。<br>
 
-
 ### 例:[id].tsxの実装
 **`posts.ts側`**
 ```tsx
@@ -388,5 +387,5 @@ function Layout({ children }) {
 
 export default Layout
 ```
-_app.tsxなどに設定してemoion-resetなどを適用すると良さそう<br>
+_app.tsxなどに設定してemotion-resetなどを適用すると良さそう<br>
 Layoutというコンポーネントをわざわざ咬ませなくても良さそう。<br>

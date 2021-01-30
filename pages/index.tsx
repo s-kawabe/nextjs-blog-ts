@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '@/Layout';
-import utilStyles from 'styles/utils.module.css';
 import { getSortedPostsData } from 'lib/posts';
 import Link from 'next/link'
+import { GetStaticProps } from 'next';
 
 export type Posts = {
   id: string;
@@ -23,22 +23,20 @@ export default function Home({ allPostsData }: Props) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section>
         <p>Welcome to Shintaro's Blog</p>
       </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
+      <section>
+        <h2>Blog</h2>
+        <ul>
           {
             allPostsData.map(({id,title,date}) => (
-              <li className={utilStyles.listItem} key={id.toString()}>
+              <li key={id.toString()}>
                 <Link href={`/posts/${id}`}>
                   <a>{title}</a>
                 </Link>
                 <br/>
-                <small className={utilStyles.lightText}>
-                  {date}
-                </small>
+                <small>{date}</small>
               </li>
             ))
           }
@@ -49,7 +47,7 @@ export default function Home({ allPostsData }: Props) {
 }
 
 // getting posts data before Home component rendering
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData()
   return {
     props: {
