@@ -49,7 +49,7 @@ export default function Home({ allPostsData }: Props) {
               </div>
             </HoverBox>
           </a>
-          <a css={css`text-decoration: none!important;`} href="https://qiita.com/shin_k_2281">
+          <a css={css`text-decoration: none!important;`} href="https://twitter.com/shin_k_2281">
             <HoverBox ml={30}>
               <p css={css`font-weight: bold;`}>Twitter</p>
               <div>
@@ -57,7 +57,7 @@ export default function Home({ allPostsData }: Props) {
               </div>
             </HoverBox>
           </a>
-          <a css={css`text-decoration: none!important;`} href="https://twitter.com/shin_k_2281">
+          <a css={css`text-decoration: none!important;`} href="https://qiita.com/shin_k_2281">
             <HoverBox ml={30}>
               <p css={css`font-weight: bold;`}>Qiita</p>
               <div> 
