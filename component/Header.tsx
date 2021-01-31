@@ -9,7 +9,7 @@ type Props = {
   home: boolean;
 }
 
-const Header = ({name, home}: Props) => {
+const Header: React.FC<Props> = ({name, home}) => {
   return (
     <header>
       {home ? (

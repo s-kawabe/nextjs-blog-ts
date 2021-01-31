@@ -7,6 +7,7 @@ import { GetStaticProps } from 'next';
 import styled from '@emotion/styled'
 import { Box, Flex, Icon, IconButton } from '@chakra-ui/react';
 import { AiFillGithub, AiFillTwitterCircle, AiFillInfoCircle } from 'react-icons/ai'
+import Counter from '../component/counter';
 
 export type Posts = {
   id: string;
@@ -40,7 +41,7 @@ export default function Home({ allPostsData }: Props) {
         I am learning about front-end.<br/><br/>
         You can check it out here if you like! 👇
         </p>
-        <Flex>
+        <Flex mb={30}>
           <a css={css`text-decoration: none!important;`} href="https://github.com/s-kawabe">
             <HoverBox>
               <p css={css`font-weight: bold;`}>Github</p>
@@ -66,6 +67,8 @@ export default function Home({ allPostsData }: Props) {
             </HoverBox>
           </a>
         </Flex>
+        <h2>and, ReduxToolkit test 😌</h2>
+        <Counter />
       </Box>
     </Layout>
   )

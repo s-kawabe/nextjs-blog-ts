@@ -37,7 +37,7 @@ const catchIcon = () => {
   return <Icon as={MdHome} />
 }
 
-function Layout({ allPostsData, children, home }: Props) {
+const Layout: React.FC<Props> = ({ allPostsData, children, home }) => {
   return (
     <div>
       <Head>
