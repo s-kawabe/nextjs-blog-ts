@@ -1,8 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react'
 import Head from 'next/head'
 import Layout, { siteTitle } from '@/Layout';
 import { getSortedPostsData } from 'lib/posts';
-import Link from 'next/link'
 import { GetStaticProps } from 'next';
+import styled from '@emotion/styled'
+import { Box, Flex, Icon, IconButton } from '@chakra-ui/react';
+import { AiFillGithub, AiFillTwitterCircle, AiFillInfoCircle } from 'react-icons/ai'
 
 export type Posts = {
   id: string;
@@ -14,34 +18,55 @@ type Props = {
   allPostsData: Posts[]  
 }
 
+const HoverBox = styled(Box)`
+  & div {
+    transition: 0.3s!important;
+  }
+  &:hover div {
+    transform: translateY(-10px);
+  }
+`
+
 export default function Home({ allPostsData }: Props) {
 
-  // const allPostsData: Posts[] = props.allPostsData
-
   return (
-    <Layout home>
+    <Layout allPostsData={allPostsData} home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section>
-        <p>Welcome to Shintaro's Blog</p>
-      </section>
-      <section>
-        <h2>Blog</h2>
-        <ul>
-          {
-            allPostsData.map(({id,title,date}) => (
-              <li key={id.toString()}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br/>
-                <small>{date}</small>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
+      <Box>
+        <h2>Hi There ✋</h2>
+        <p>My name is Shintaro. <br/>
+        I am learning about front-end.<br/><br/>
+        You can check it out here if you like! 👇
+        </p>
+        <Flex>
+          <a css={css`text-decoration: none!important;`} href="https://github.com/s-kawabe">
+            <HoverBox>
+              <p css={css`font-weight: bold;`}>Github</p>
+              <div>
+                <Icon as={AiFillGithub} boxSize={50}/>
+              </div>
+            </HoverBox>
+          </a>
+          <a css={css`text-decoration: none!important;`} href="https://qiita.com/shin_k_2281">
+            <HoverBox ml={30}>
+              <p css={css`font-weight: bold;`}>Twitter</p>
+              <div>
+                <Icon as={AiFillTwitterCircle} boxSize={50}/>
+              </div>
+            </HoverBox>
+          </a>
+          <a css={css`text-decoration: none!important;`} href="https://twitter.com/shin_k_2281">
+            <HoverBox ml={30}>
+              <p css={css`font-weight: bold;`}>Qiita</p>
+              <div> 
+                <Icon as={AiFillInfoCircle} boxSize={50}/>
+              </div>
+            </HoverBox>
+          </a>
+        </Flex>
+      </Box>
     </Layout>
   )
 }

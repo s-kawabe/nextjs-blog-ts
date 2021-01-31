@@ -1,7 +1,8 @@
 import Layout from '@/Layout'
-import { getAllPostsIds, getPostData } from 'lib/posts';
+import { getAllPostsIds, getPostData, getSortedPostsData } from 'lib/posts';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head'
+import { Posts } from '../index';
 
 type Props = {
   postData: {
@@ -9,11 +10,12 @@ type Props = {
     date: string;
     contentHtml: string;
   }
+  allPostsData: Posts[]
 }
 
-export default function Post({ postData }: Props) {
+export default function Post({ postData, allPostsData }: Props) {
   return (
-    <Layout>
+    <Layout allPostsData={allPostsData}>
       <Head>
         <title>{postData.title}</title>
       </Head>
@@ -37,9 +39,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const allPostsData = getSortedPostsData()
   const postData = await getPostData(params.id as string)
   return {  
     props: {
+      allPostsData,
       postData
     }
   }
