@@ -19,7 +19,7 @@ const postsSlice = createSlice({
     setAllPosts: (state, action: PayloadAction<Posts[]>) => ({
       ...state,
       article: [...action.payload]
-    }) 
+    }),
   },
   // 記事の取得処理は非同期じゃなかった！
   // extraReducers: (builder) => {

@@ -10,8 +10,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { StoreState } from 'ducks/createStore';
 import { ArticleState } from 'ducks/posts/slice'
 import postsSlice from '../ducks/posts/slice';
+import { useEffect, useState } from 'react';
 
-const Container = styled(Box)`
+const Container = styled(Box)`            
   width: 400px;
   margin: 50px 10px;
   background-color: #EEEEEE;
@@ -26,6 +27,7 @@ const Aside = (): JSX.Element => {
   // allPostsDataはReduxからとってくるようにする
   const allPostsData = useSelector<StoreState, ArticleState>((state) => state.posts.article)
   
+
   return (
     <Container>
       <section css={css`margin: 10px;`}>
@@ -34,10 +36,11 @@ const Aside = (): JSX.Element => {
           <Icon ml={10} boxSize={30} as={MdDescription} color="#71D6C9" />
         </Flex>
         <ul css={css`padding: 0!important;`}>
+          {console.log(allPostsData)}
           {
-            allPostsData.map(({id,title,date}) => (
+          　　allPostsData && allPostsData.map(({id,title,date}) => (
               <List key={id.toString()}>
-                <Link href={`/posts/${id}`}>
+                <Link href={`/posts/${id}`} as={`/posts/${id}`}>
                   <a css={css`
                     text-decoration: none!important;
                     cursor: pointer;

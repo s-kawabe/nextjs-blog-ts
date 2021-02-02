@@ -2,7 +2,7 @@
 import { jsx, css, Global } from '@emotion/react'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
-import createStore from 'ducks/createStore';
+import store from 'ducks/createStore';
 
 const global = css`
 html,
@@ -37,7 +37,7 @@ img {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={createStore()}>
+    <Provider store={store}>
       <Global styles={global} />
       <Component {...pageProps} />  
     </Provider>

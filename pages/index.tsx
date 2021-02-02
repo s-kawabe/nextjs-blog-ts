@@ -36,7 +36,6 @@ export default function Home({ allPostsData }: Props) {
   // Storeに格納する
   dispatch(postsSlice.actions.setAllPosts(allPostsData))
 
-
   return (
     <Layout home>
       <Head>
