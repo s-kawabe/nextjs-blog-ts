@@ -2,11 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { asyncIncrementCounter } from './asyncActions';
 
 export type CounterState = { 
-  count: number 
+  count: number;
+  loading: boolean;
+  error: boolean;
+  errorMessage: string;
 }
 
 export const initialState: CounterState = {
-  count: 0 
+  count: 0,
+  loading: false,
+  error: false,
+  errorMessage: '',
 }
 
 const counterSlice = createSlice({
@@ -25,9 +31,34 @@ const counterSlice = createSlice({
     builder.addCase(asyncIncrementCounter.pending, (state) => {
       return {
         ...state,
-
+        loading: true,
+        error: false,
+        errorMessage: '',
       }
-    })
+    }),
+    builder.addCase(
+      asyncIncrementCounter.rejected,
+      (state, action: RejectedAction<number>) => {
+        return {
+          ...state,
+          loadgind: false,
+          error: true,
+          errorMessage: action.error.message,
+        }
+      }
+    ),
+    builder.addCase(
+      asyncIncrementCounter.fulfilled,
+      (state, action: PayloadAction<number>) => {
+        return {
+          ...state,
+          count: state.count + action.payload,
+          loading: false,
+          error: false,
+          errorMessage: ''
+        }
+      }
+    )
   }
 })
 

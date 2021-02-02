@@ -6,7 +6,10 @@ import styled from '@emotion/styled';
 import { Icon, Box, Flex, Text } from '@chakra-ui/react';
 import { MdDescription } from "react-icons/md";
 import Link from 'next/link'
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { useSelector, useDispatch } from 'react-redux'
+import { StoreState } from 'ducks/createStore';
+import { ArticleState } from 'ducks/posts/slice'
+import postsSlice from '../ducks/posts/slice';
 
 const Container = styled(Box)`
   width: 400px;
@@ -19,11 +22,10 @@ const List = styled.li`
   list-style: none;
 `
 
-type Props = {
-  allPostsData: Posts[]  
-}
-
-const Aside = ({ allPostsData }: Props): JSX.Element => {
+const Aside = (): JSX.Element => {
+  // allPostsDataはReduxからとってくるようにする
+  const allPostsData = useSelector<StoreState, ArticleState>((state) => state.posts.article)
+  
   return (
     <Container>
       <section css={css`margin: 10px;`}>

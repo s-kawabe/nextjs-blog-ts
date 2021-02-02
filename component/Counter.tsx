@@ -1,8 +1,11 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react'
 import { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import counterSlice from '../ducks/counter/slice';
 import { useCounterState } from '../ducks/counter/selector';
 import { Button, Flex, Box } from '@chakra-ui/react';
+import { asyncIncrementCounter } from '../ducks/counter/asyncActions';
 
 const Counter: React.FC = () => {
   
@@ -31,6 +34,10 @@ const Counter: React.FC = () => {
     setCount(Number(event.target.value));
   }, [setCount])
 
+  const onClickAsyncIncrement = async () => {
+    await dispatch(asyncIncrementCounter(10));
+  }
+
   return (
     <Box>
       <Flex>
@@ -41,8 +48,21 @@ const Counter: React.FC = () => {
       <input type="text" name="text" onChange={inputCount}></input>
       <button onClick={handleAnyIncrement}>any count you like</button>
       <br />
-      <button onClick={reset}>reset</button>
+      <button onClick={reset}>reset</button><br/><br/>
+      <button
+        type="button"
+        onClick={onClickAsyncIncrement}
+        disabled={state.loading}
+      >
+        asyncronous countup
+      </button>
       <h3>count of {state.count}</h3>
+      {state.loading ? <p>通信中</p> : ''}
+      {state.error ? (
+        <p css={css`color: red; font-weight: bold`}>問題が発生しました。 {state.errorMessage}</p> 
+      ) : (
+        ''
+      )}
     </Box>
   )
 }

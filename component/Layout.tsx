@@ -37,7 +37,7 @@ const catchIcon = () => {
   return <Icon as={MdHome} />
 }
 
-const Layout: React.FC<Props> = ({ allPostsData, children, home }) => {
+const Layout: React.FC<Props> = ({ children, home }) => {
   return (
     <div>
       <Head>
@@ -58,7 +58,7 @@ const Layout: React.FC<Props> = ({ allPostsData, children, home }) => {
       <Header name={name} home={home} />
       <Flex alignItems="flex-start" justifyContent="center" >
         <main css={mainArea}>{ children }</main>
-        <Aside allPostsData={allPostsData} />
+        <Aside />
       </Flex>
       {!home && (
         <div>

@@ -47,7 +47,6 @@ export async function getPostData(id: string) {
 }
 
 export function getSortedPostsData(): Posts[] {
-  console.log('hoge')
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map((fileName: string): Posts => {
     const id = fileName.replace(/\.md$/, '')

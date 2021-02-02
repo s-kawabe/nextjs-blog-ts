@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react'
+import { useDispatch } from 'react-redux'
 import Head from 'next/head'
 import Layout, { siteTitle } from '@/Layout';
 import { getSortedPostsData } from 'lib/posts';
@@ -7,7 +8,8 @@ import { GetStaticProps } from 'next';
 import styled from '@emotion/styled'
 import { Box, Flex, Icon, IconButton } from '@chakra-ui/react';
 import { AiFillGithub, AiFillTwitterCircle, AiFillInfoCircle } from 'react-icons/ai'
-import Counter from '../component/counter';
+import Counter from '../component/Counter';
+import postsSlice from '../ducks/posts/slice';
 
 export type Posts = {
   id: string;
@@ -29,9 +31,14 @@ const HoverBox = styled(Box)`
 `
 
 export default function Home({ allPostsData }: Props) {
+  
+  const dispatch = useDispatch()
+  // Storeに格納する
+  dispatch(postsSlice.actions.setAllPosts(allPostsData))
+
 
   return (
-    <Layout allPostsData={allPostsData} home>
+    <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -76,7 +83,9 @@ export default function Home({ allPostsData }: Props) {
 
 // getting posts data before Home component rendering
 export const getStaticProps: GetStaticProps = async () => {
+  // 記事を全件数取得
   const allPostsData = getSortedPostsData()
+
   return {
     props: {
       allPostsData

@@ -5,7 +5,6 @@ import { Box, Image, Flex, Text, useCounter } from '@chakra-ui/react'
 import { SunIcon } from '@chakra-ui/icons'
 import { useSelector } from 'react-redux';
 import { CounterState } from '../ducks/counter/slice';
-import { useCounterState } from '../ducks/counter/selector';
 import { StoreState } from '../ducks/createStore';
 
 type Props = {
